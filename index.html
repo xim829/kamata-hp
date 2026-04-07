@@ -1,3 +1,11 @@
+<!-- ========================================
+     ver: v1.2
+     更新内容:
+       v1.0 - 初版作成
+       v1.1 - ヒーロー右側に写真ボックス追加
+       v1.2 - ヒーロー左側にSVGオフィス背景挿入、
+               右側プレースホルダー削除
+     ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -1245,7 +1253,7 @@
         <div class="contact-detail">
           <p class="contact-detail-label">Email</p>
           <p class="contact-detail-value">
-            <a href="/cdn-cgi/l/email-protection#aac3c4ccc5eacfcedfc9cbdec3c5c487c9c5dfc4d9cfc6c3c4cd84c0da"><span class="__cf_email__" data-cfemail="8ce5e2eae3cce9e8f9efedf8e5e3e2a1efe3f9e2ffe9e0e5e2eba2e6fc">[email&#160;protected]</span></a>
+            <a href="mailto:info@education-counseling.jp">info@education-counseling.jp</a>
           </p>
         </div>
 
@@ -1311,7 +1319,7 @@
       <div class="footer-brand">
         日本橋教育カウンセリングオフィス<br>
         公認心理師 伯耆原浩行
-        <small><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741d1a121b341110011715001d1b1a59171b011a0711181d1a135a1e04">[email&#160;protected]</a></small>
+        <small>info@education-counseling.jp</small>
         <small>東京都中央区 日本橋エリア</small>
       </div>
       <ul class="footer-links">
@@ -1327,4 +1335,17 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
