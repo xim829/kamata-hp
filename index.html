@@ -1,10 +1,11 @@
 <!-- ========================================
-     ver: v1.2
+     ver: v1.4
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
-       v1.2 - ヒーロー左側にSVGオフィス背景挿入、
-               右側プレースホルダー削除
+       v1.2 - ヒーロー左側にSVGオフィス背景挿入、右側プレースホルダー削除
+       v1.3 - Cloudflare破損修正・メールアドレス復元
+       v1.4 - 電話番号・郵便番号・住所を追加（連絡先・フッター）
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -1251,6 +1252,13 @@
         </p>
 
         <div class="contact-detail">
+          <p class="contact-detail-label">Tel</p>
+          <p class="contact-detail-value">
+            <a href="tel:0343629561">03-4362-9561</a>
+          </p>
+        </div>
+
+        <div class="contact-detail">
           <p class="contact-detail-label">Email</p>
           <p class="contact-detail-value">
             <a href="mailto:info@education-counseling.jp">info@education-counseling.jp</a>
@@ -1259,8 +1267,11 @@
 
         <div class="contact-detail">
           <p class="contact-detail-label">Location</p>
-          <p class="contact-detail-value">東京都中央区 日本橋エリア<br>
-          <small style="font-size:0.78rem; color: var(--color-text-muted); font-family: var(--font-sans);">詳細はお申し込み後にご案内します</small></p>
+          <p class="contact-detail-value" style="font-size:0.88rem;">
+            〒103-0007<br>
+            東京都中央区日本橋浜町2-11-2<br>
+            メゾン日本橋 1006号
+          </p>
         </div>
 
         <div class="contact-detail">
@@ -1319,8 +1330,8 @@
       <div class="footer-brand">
         日本橋教育カウンセリングオフィス<br>
         公認心理師 伯耆原浩行
-        <small>info@education-counseling.jp</small>
-        <small>東京都中央区 日本橋エリア</small>
+        <small>〒103-0007 東京都中央区日本橋浜町2-11-2 メゾン日本橋1006</small>
+        <small>Tel: 03-4362-9561　info@education-counseling.jp</small>
       </div>
       <ul class="footer-links">
         <li><a href="#about">カウンセラー</a></li>
