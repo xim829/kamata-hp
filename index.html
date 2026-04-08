@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v1.8
+     ver: v1.9
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -10,6 +10,7 @@
        v1.6 - カウンセラー写真をhokibara.jpgに差し替え
        v1.7 - こんな方への文章変更・伯耆原にふりがな追加・CTAボタン改行修正
        v1.8 - ふりがな修正（ほうきはら→ほうきばら）
+       v1.9 - スマホ表示でCTAボタン2つが1行に収まるよう幅・文字サイズ調整
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -186,9 +187,9 @@
     .btn-primary {
       background: var(--color-primary);
       color: white;
-      padding: 0.9rem 2rem;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
       text-decoration: none;
       transition: background 0.2s;
       font-family: var(--font-sans);
@@ -200,12 +201,13 @@
 
     .btn-ghost {
       color: var(--color-text-muted);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       text-decoration: none;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       border-bottom: 1px solid var(--color-border);
       padding-bottom: 2px;
       transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
     }
 
     .btn-ghost:hover {
