@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v2.0
+     ver: v2.1
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -11,7 +11,9 @@
        v1.7 - こんな方への文章変更・伯耆原にふりがな追加・CTAボタン改行修正
        v1.8 - ふりがな修正（ほうきはら→ほうきばら）
        v1.9 - スマホ表示でCTAボタン2つが1行に収まるよう幅・文字サイズ調整
-       v2.0 - スマホ用ハンバーガーメニューを実装（CSS・JS・HTML追加）
+       v2.0 - スマホ用ハンバーガーメニューを実装
+       v2.1 - 左側背景をcounciling-office.jpgに変更・右側にも同写真配置・
+               PC表示でヒーロー比率を2:1に変更・オーバーレイ透明度調整
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -111,7 +113,7 @@
     .hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       padding-top: 64px;
     }
 
@@ -136,9 +138,9 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(250,250,247,0.92) 0%,
-        rgba(245,242,236,0.88) 60%,
-        rgba(230,238,233,0.75) 100%
+        rgba(250,250,247,0.72) 0%,
+        rgba(245,242,236,0.65) 60%,
+        rgba(230,238,233,0.55) 100%
       );
       z-index: 1;
     }
@@ -241,7 +243,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.55;
+      opacity: 0.35;
     }
 
     .hero-photo-placeholder {
@@ -989,13 +991,7 @@
   </div>
   <div class="hero-visual">
     <div class="hero-visual-bg"></div>
-
-    <!-- ▼▼▼ ここにオフィス写真を設定します ▼▼▼ -->
-    <!-- 写真を用意したら、下の img タグのコメントを外し、src="" の中にファイル名を入れてください -->
-    <!-- 例: src="images/office.jpg" -->
-    <!-- <img class="hero-office-photo" src="images/office.jpg" alt="オフィスの写真"> -->
-
-
+    <img class="hero-office-photo" src="counciling-office.jpg" alt="オフィスの写真">
 
     <div class="hero-quote">
       <blockquote>
