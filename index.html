@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v1.6
+     ver: v1.8
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -8,6 +8,8 @@
        v1.4 - 電話番号・郵便番号・住所を追加
        v1.5 - フッターリンクを1行表示に修正
        v1.6 - カウンセラー写真をhokibara.jpgに差し替え
+       v1.7 - こんな方への文章変更・伯耆原にふりがな追加・CTAボタン改行修正
+       v1.8 - ふりがな修正（ほうきはら→ほうきばら）
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -190,6 +192,8 @@
       text-decoration: none;
       transition: background 0.2s;
       font-family: var(--font-sans);
+      white-space: nowrap;
+      display: inline-block;
     }
 
     .btn-primary:hover { background: var(--color-primary-light); }
@@ -429,6 +433,14 @@
       font-weight: 300;
       color: var(--color-primary);
       margin-bottom: 0.3rem;
+    }
+
+    .about-name rt {
+      font-size: 0.45rem;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      font-family: var(--font-sans);
+      font-weight: 300;
     }
 
     .about-credential {
@@ -946,8 +958,9 @@
         <h2 class="section-title">こんな方へ</h2>
       </div>
       <p class="section-body">
-        「相談するほどのことでもない」と思って抱え込んでいませんか。
-        あなたが感じている重さは、本物です。一人で抱えなくていいのです。
+        あなたの感じる心の重さの原因はなんでしょう。<br>
+        ひょっとしてあなたが思っているものとは違うかも知れません。<br>
+        1人で考えるのではなく、誰かに相談してみませんか？
       </p>
     </div>
 
@@ -996,7 +1009,9 @@
 
       <div class="about-content fade-in">
         <p class="section-label">Counselor</p>
-        <h2 class="about-name">伯耆原 浩行</h2>
+        <h2 class="about-name">
+          <ruby>伯耆原<rt>ほうきばら</rt></ruby>　<ruby>浩行<rt>ひろゆき</rt></ruby>
+        </h2>
         <p class="about-credential">公認心理師</p>
         <div class="about-divider"></div>
 
