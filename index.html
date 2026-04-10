@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v2.4
+     ver: v2.5
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -15,6 +15,7 @@
        v2.1 - PC表示ヒーロー比率2:1に変更・両側に写真配置
        v2.2 - 左側のみ写真・右側は緑背景に戻す
        v2.4 - テキストごとに個別背景ボックス・透明度0.55に調整
+       v2.5 - 背景ボックスをテキスト幅にフィット・ボタンにも背景追加
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -149,16 +150,11 @@
     .hero-text-card {
       position: relative;
       z-index: 2;
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
+      align-items: flex-start;
       gap: 0;
       background: transparent;
-    }
- 
-    .hero-text-card h1,
-    .hero-text-card p,
-    .hero-text-card .hero-actions {
-      display: inline-block;
     }
  
     .hero-title-wrap {
@@ -175,6 +171,15 @@
       backdrop-filter: blur(4px);
       padding: 0.5rem 1rem;
       margin-bottom: 2rem;
+    }
+ 
+    .hero-actions-wrap {
+      display: inline-flex;
+      gap: 1rem;
+      align-items: center;
+      background: rgba(250, 250, 247, 0.55);
+      backdrop-filter: blur(4px);
+      padding: 0.6rem 1rem;
     }
  
     .hero-text > *:not(.hero-text-bg):not(.hero-text-overlay) {
@@ -1021,7 +1026,7 @@
           正解を出す場所ではなく、一緒に考える場所です。
         </p>
       </div>
-      <div class="hero-actions">
+      <div class="hero-actions-wrap">
         <a href="#contact" class="btn-primary">無料相談のご予約</a>
         <a href="#about" class="btn-ghost">カウンセラーについて</a>
       </div>
