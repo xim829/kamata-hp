@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v2.1
+     ver: v2.2
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -12,8 +12,8 @@
        v1.8 - ふりがな修正（ほうきはら→ほうきばら）
        v1.9 - スマホ表示でCTAボタン2つが1行に収まるよう幅・文字サイズ調整
        v2.0 - スマホ用ハンバーガーメニューを実装
-       v2.1 - 左側背景をcounciling-office.jpgに変更・右側にも同写真配置・
-               PC表示でヒーロー比率を2:1に変更・オーバーレイ透明度調整
+       v2.1 - PC表示ヒーロー比率2:1に変更・両側に写真配置
+       v2.2 - 左側のみcounciling-office.jpg（透明度0.12）・右側は緑背景に戻す
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -130,18 +130,18 @@
     .hero-text-bg {
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.12;
       z-index: 0;
     }
 
     .hero-text-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(250,250,247,0.72) 0%,
-        rgba(245,242,236,0.65) 60%,
-        rgba(230,238,233,0.55) 100%
-      );
+      background: rgba(250,250,247,0.0);
       z-index: 1;
     }
 
@@ -991,7 +991,6 @@
   </div>
   <div class="hero-visual">
     <div class="hero-visual-bg"></div>
-    <img class="hero-office-photo" src="counciling-office.jpg" alt="オフィスの写真">
 
     <div class="hero-quote">
       <blockquote>
