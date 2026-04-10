@@ -1,5 +1,5 @@
 <!-- ========================================
-     ver: v2.2
+     ver: v2.3
      更新内容:
        v1.0 - 初版作成
        v1.1 - ヒーロー右側に写真ボックス追加
@@ -13,7 +13,8 @@
        v1.9 - スマホ表示でCTAボタン2つが1行に収まるよう幅・文字サイズ調整
        v2.0 - スマホ用ハンバーガーメニューを実装
        v2.1 - PC表示ヒーロー比率2:1に変更・両側に写真配置
-       v2.2 - 左側のみcounciling-office.jpg（透明度0.12）・右側は緑背景に戻す
+       v2.2 - 左側のみ写真・右側は緑背景に戻す
+       v2.3 - 写真透明度0.70・テキスト背面に半透明カード追加
      ======================================== -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -27,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --color-primary: #2C4A3E;
       --color-primary-light: #3D6455;
@@ -43,9 +44,9 @@
       --font-serif: 'Noto Serif JP', serif;
       --font-sans: 'Noto Sans JP', sans-serif;
     }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       font-family: var(--font-sans);
       background: var(--color-bg);
@@ -53,7 +54,7 @@
       line-height: 1.8;
       font-weight: 300;
     }
-
+ 
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -68,7 +69,7 @@
       justify-content: space-between;
       height: 64px;
     }
-
+ 
     .nav-logo {
       font-family: var(--font-serif);
       font-size: 0.85rem;
@@ -77,13 +78,13 @@
       letter-spacing: 0.05em;
       text-decoration: none;
     }
-
+ 
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
+ 
     .nav-links a {
       font-size: 0.8rem;
       letter-spacing: 0.08em;
@@ -91,9 +92,9 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-
+ 
     .nav-links a:hover { color: var(--color-primary); }
-
+ 
     .nav-cta {
       font-size: 0.78rem;
       letter-spacing: 0.1em;
@@ -103,12 +104,12 @@
       text-decoration: none;
       transition: all 0.2s;
     }
-
+ 
     .nav-cta:hover {
       background: var(--color-primary);
       color: white;
     }
-
+ 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
@@ -116,7 +117,7 @@
       grid-template-columns: 2fr 1fr;
       padding-top: 64px;
     }
-
+ 
     .hero-text {
       display: flex;
       flex-direction: column;
@@ -126,7 +127,7 @@
       position: relative;
       overflow: hidden;
     }
-
+ 
     .hero-text-bg {
       position: absolute;
       inset: 0;
@@ -134,22 +135,31 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.60;
+      opacity: 0.70;
       z-index: 0;
     }
-
+ 
     .hero-text-overlay {
       position: absolute;
       inset: 0;
       background: rgba(250,250,247,0.0);
       z-index: 1;
     }
-
+ 
+    .hero-text-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(250, 250, 247, 0.82);
+      backdrop-filter: blur(6px);
+      padding: 2.5rem 2.5rem;
+      border-left: 3px solid var(--color-accent-light);
+    }
+ 
     .hero-text > *:not(.hero-text-bg):not(.hero-text-overlay) {
       position: relative;
       z-index: 2;
     }
-
+ 
     .hero-eyebrow {
       font-size: 0.72rem;
       letter-spacing: 0.2em;
@@ -157,7 +167,7 @@
       margin-bottom: 2rem;
       text-transform: uppercase;
     }
-
+ 
     .hero-title {
       font-family: var(--font-serif);
       font-size: clamp(2rem, 3.5vw, 3rem);
@@ -166,13 +176,13 @@
       color: var(--color-primary);
       margin-bottom: 2rem;
     }
-
+ 
     .hero-title em {
       font-style: normal;
       display: block;
       color: var(--color-accent);
     }
-
+ 
     .hero-body {
       font-size: 0.9rem;
       color: var(--color-text-muted);
@@ -180,13 +190,13 @@
       max-width: 420px;
       margin-bottom: 3rem;
     }
-
+ 
     .hero-actions {
       display: flex;
       gap: 1rem;
       align-items: center;
     }
-
+ 
     .btn-primary {
       background: var(--color-primary);
       color: white;
@@ -199,9 +209,9 @@
       white-space: nowrap;
       display: inline-block;
     }
-
+ 
     .btn-primary:hover { background: var(--color-primary-light); }
-
+ 
     .btn-ghost {
       color: var(--color-text-muted);
       font-size: 0.78rem;
@@ -212,12 +222,12 @@
       transition: color 0.2s, border-color 0.2s;
       white-space: nowrap;
     }
-
+ 
     .btn-ghost:hover {
       color: var(--color-primary);
       border-color: var(--color-primary);
     }
-
+ 
     .hero-visual {
       background: var(--color-bg-dark);
       position: relative;
@@ -226,7 +236,7 @@
       align-items: flex-end;
       padding: 3rem;
     }
-
+ 
     .hero-visual-bg {
       position: absolute;
       inset: 0;
@@ -234,7 +244,7 @@
         radial-gradient(ellipse at 30% 60%, rgba(61,100,85,0.4) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(139,115,85,0.2) 0%, transparent 50%);
     }
-
+ 
     /* ── HERO OFFICE PHOTO ── */
     .hero-office-photo {
       position: absolute;
@@ -245,7 +255,7 @@
       object-position: center;
       opacity: 0.35;
     }
-
+ 
     .hero-photo-placeholder {
       position: absolute;
       inset: 0;
@@ -257,25 +267,25 @@
       margin: 2rem;
       border-radius: 4px;
     }
-
+ 
     .hero-photo-placeholder p {
       font-size: 0.75rem;
       color: rgba(255,255,255,0.3);
       letter-spacing: 0.1em;
       margin-top: 0.5rem;
     }
-
+ 
     .hero-photo-placeholder svg {
       width: 32px;
       height: 32px;
       fill: rgba(255,255,255,0.2);
     }
-
+ 
     .hero-quote {
       position: relative;
       z-index: 1;
     }
-
+ 
     .hero-quote blockquote {
       font-family: var(--font-serif);
       font-size: 1.1rem;
@@ -286,7 +296,7 @@
       padding-left: 1.5rem;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
-
+ 
     .hero-quote cite {
       display: block;
       font-style: normal;
@@ -296,16 +306,16 @@
       margin-top: 1.5rem;
       padding-left: 1.5rem;
     }
-
+ 
     /* ── SECTION BASE ── */
     section { padding: 6rem 0; }
-
+ 
     .container {
       max-width: 1080px;
       margin: 0 auto;
       padding: 0 2rem;
     }
-
+ 
     .section-label {
       font-size: 0.7rem;
       letter-spacing: 0.25em;
@@ -313,7 +323,7 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-
+ 
     .section-title {
       font-family: var(--font-serif);
       font-size: clamp(1.6rem, 2.5vw, 2.2rem);
@@ -322,17 +332,17 @@
       line-height: 1.7;
       margin-bottom: 1.5rem;
     }
-
+ 
     .section-body {
       font-size: 0.9rem;
       color: var(--color-text-muted);
       line-height: 1.9;
       max-width: 560px;
     }
-
+ 
     /* ── FOR WHOM ── */
     .forwho { background: var(--color-bg-warm); }
-
+ 
     .forwho-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -340,20 +350,20 @@
       margin-bottom: 4rem;
       align-items: end;
     }
-
+ 
     .forwho-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
-
+ 
     .forwho-card {
       background: white;
       padding: 2.5rem 2rem;
       border: 1px solid var(--color-border);
       position: relative;
     }
-
+ 
     .forwho-card-num {
       font-family: var(--font-serif);
       font-size: 3rem;
@@ -362,7 +372,7 @@
       margin-bottom: 1.5rem;
       font-weight: 300;
     }
-
+ 
     .forwho-card-title {
       font-family: var(--font-serif);
       font-size: 1rem;
@@ -370,20 +380,20 @@
       margin-bottom: 1rem;
       line-height: 1.6;
     }
-
+ 
     .forwho-card-body {
       font-size: 0.82rem;
       color: var(--color-text-muted);
       line-height: 1.9;
     }
-
+ 
     .forwho-card-accent {
       width: 2rem;
       height: 2px;
       background: var(--color-accent-light);
       margin-bottom: 1.5rem;
     }
-
+ 
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
@@ -391,7 +401,7 @@
       gap: 6rem;
       align-items: start;
     }
-
+ 
     .about-photo {
       aspect-ratio: 3/4;
       background: var(--color-bg-warm);
@@ -402,12 +412,12 @@
       position: relative;
       overflow: hidden;
     }
-
+ 
     .photo-placeholder {
       text-align: center;
       color: var(--color-text-light);
     }
-
+ 
     .photo-placeholder-icon {
       width: 64px;
       height: 64px;
@@ -418,20 +428,20 @@
       align-items: center;
       justify-content: center;
     }
-
+ 
     .photo-placeholder-icon svg {
       width: 32px;
       height: 32px;
       fill: var(--color-text-light);
     }
-
+ 
     .photo-placeholder p {
       font-size: 0.75rem;
       letter-spacing: 0.1em;
     }
-
+ 
     .about-content { padding-top: 1rem; }
-
+ 
     .about-name {
       font-family: var(--font-serif);
       font-size: 1.6rem;
@@ -439,7 +449,7 @@
       color: var(--color-primary);
       margin-bottom: 0.3rem;
     }
-
+ 
     .about-name rt {
       font-size: 0.45rem;
       letter-spacing: 0.05em;
@@ -447,35 +457,35 @@
       font-family: var(--font-sans);
       font-weight: 300;
     }
-
+ 
     .about-credential {
       font-size: 0.8rem;
       letter-spacing: 0.15em;
       color: var(--color-accent);
       margin-bottom: 2.5rem;
     }
-
+ 
     .about-divider {
       width: 3rem;
       height: 1px;
       background: var(--color-accent-light);
       margin-bottom: 2.5rem;
     }
-
+ 
     .about-text {
       font-size: 0.88rem;
       color: var(--color-text-muted);
       line-height: 2;
       margin-bottom: 1.5rem;
     }
-
+ 
     .about-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 2.5rem;
     }
-
+ 
     .about-tag {
       font-size: 0.72rem;
       letter-spacing: 0.1em;
@@ -483,50 +493,50 @@
       border: 1px solid var(--color-primary);
       padding: 0.35rem 0.9rem;
     }
-
+ 
     /* ── PRICING ── */
     .pricing { background: var(--color-bg-warm); }
-
+ 
     .pricing-header {
       text-align: center;
       margin-bottom: 4rem;
     }
-
+ 
     .pricing-header .section-body {
       margin: 0 auto;
       text-align: left;
     }
-
+ 
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 3rem;
     }
-
+ 
     .pricing-card {
       background: white;
       border: 1px solid var(--color-border);
       padding: 2.5rem 2rem;
       position: relative;
     }
-
+ 
     .pricing-card.featured {
       background: var(--color-primary);
       border-color: var(--color-primary);
     }
-
+ 
     .pricing-card-label {
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       color: var(--color-accent);
       margin-bottom: 1.5rem;
     }
-
+ 
     .pricing-card.featured .pricing-card-label {
       color: var(--color-accent-light);
     }
-
+ 
     .pricing-card-name {
       font-family: var(--font-serif);
       font-size: 1.1rem;
@@ -534,9 +544,9 @@
       margin-bottom: 1rem;
       font-weight: 400;
     }
-
+ 
     .pricing-card.featured .pricing-card-name { color: white; }
-
+ 
     .pricing-amount {
       font-family: var(--font-serif);
       font-size: 2.2rem;
@@ -545,39 +555,39 @@
       line-height: 1;
       margin-bottom: 0.3rem;
     }
-
+ 
     .pricing-card.featured .pricing-amount { color: white; }
-
+ 
     .pricing-unit {
       font-size: 0.75rem;
       color: var(--color-text-light);
       margin-bottom: 2rem;
     }
-
+ 
     .pricing-card.featured .pricing-unit { color: rgba(255,255,255,0.5); }
-
+ 
     .pricing-detail {
       font-size: 0.82rem;
       color: var(--color-text-muted);
       line-height: 1.9;
     }
-
+ 
     .pricing-card.featured .pricing-detail { color: rgba(255,255,255,0.7); }
-
+ 
     .pricing-divider {
       height: 1px;
       background: var(--color-border);
       margin: 1.5rem 0;
     }
-
+ 
     .pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.15); }
-
+ 
     .pricing-note {
       text-align: center;
       font-size: 0.8rem;
       color: var(--color-text-light);
     }
-
+ 
     /* ── FLOW ── */
     .flow-steps {
       display: grid;
@@ -586,12 +596,12 @@
       margin-top: 4rem;
       position: relative;
     }
-
+ 
     .flow-step {
       padding: 2rem;
       position: relative;
     }
-
+ 
     .flow-step:not(:last-child)::after {
       content: '';
       position: absolute;
@@ -601,7 +611,7 @@
       height: 2rem;
       background: var(--color-border);
     }
-
+ 
     .flow-num {
       font-family: var(--font-serif);
       font-size: 2.5rem;
@@ -610,23 +620,23 @@
       line-height: 1;
       margin-bottom: 1.5rem;
     }
-
+ 
     .flow-title {
       font-size: 0.88rem;
       font-weight: 500;
       color: var(--color-primary);
       margin-bottom: 0.8rem;
     }
-
+ 
     .flow-body {
       font-size: 0.8rem;
       color: var(--color-text-muted);
       line-height: 1.9;
     }
-
+ 
     /* ── FAQ ── */
     .faq { background: var(--color-bg-warm); }
-
+ 
     .faq-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -634,20 +644,20 @@
       margin-top: 3rem;
       border: 1px solid var(--color-border);
     }
-
+ 
     .faq-item {
       padding: 2rem 2.5rem;
       border-bottom: 1px solid var(--color-border);
     }
-
+ 
     .faq-item:nth-child(odd) {
       border-right: 1px solid var(--color-border);
     }
-
+ 
     .faq-item:nth-last-child(-n+2) {
       border-bottom: none;
     }
-
+ 
     .faq-q {
       font-size: 0.85rem;
       font-weight: 500;
@@ -655,13 +665,13 @@
       margin-bottom: 0.8rem;
       line-height: 1.6;
     }
-
+ 
     .faq-a {
       font-size: 0.82rem;
       color: var(--color-text-muted);
       line-height: 1.9;
     }
-
+ 
     /* ── CONTACT ── */
     .contact-grid {
       display: grid;
@@ -669,13 +679,13 @@
       gap: 6rem;
       align-items: start;
     }
-
+ 
     .contact-info { padding-top: 1rem; }
-
+ 
     .contact-detail {
       margin-top: 2.5rem;
     }
-
+ 
     .contact-detail-label {
       font-size: 0.7rem;
       letter-spacing: 0.2em;
@@ -683,47 +693,47 @@
       text-transform: uppercase;
       margin-bottom: 0.5rem;
     }
-
+ 
     .contact-detail-value {
       font-family: var(--font-serif);
       font-size: 0.95rem;
       color: var(--color-primary);
     }
-
+ 
     .contact-detail-value a {
       color: inherit;
       text-decoration: none;
       border-bottom: 1px solid var(--color-border);
       transition: border-color 0.2s;
     }
-
+ 
     .contact-detail-value a:hover {
       border-color: var(--color-primary);
     }
-
+ 
     .contact-form {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
     }
-
+ 
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
     }
-
+ 
     .form-label {
       font-size: 0.75rem;
       letter-spacing: 0.1em;
       color: var(--color-text-muted);
     }
-
+ 
     .form-label span {
       color: var(--color-accent);
       margin-left: 0.3rem;
     }
-
+ 
     .form-input,
     .form-select,
     .form-textarea {
@@ -739,18 +749,18 @@
       font-weight: 300;
       appearance: none;
     }
-
+ 
     .form-input:focus,
     .form-select:focus,
     .form-textarea:focus {
       border-color: var(--color-primary);
     }
-
+ 
     .form-textarea {
       resize: vertical;
       min-height: 140px;
     }
-
+ 
     .form-submit {
       background: var(--color-primary);
       color: white;
@@ -764,34 +774,34 @@
       margin-top: 0.5rem;
       font-weight: 300;
     }
-
+ 
     .form-submit:hover { background: var(--color-primary-light); }
-
+ 
     .form-note {
       font-size: 0.72rem;
       color: var(--color-text-light);
       line-height: 1.7;
     }
-
+ 
     /* ── FOOTER ── */
     footer {
       background: var(--color-bg-dark);
       padding: 4rem 0 3rem;
     }
-
+ 
     .footer-inner {
       display: flex;
       flex-direction: column;
       gap: 2rem;
     }
-
+ 
     .footer-brand {
       font-family: var(--font-serif);
       font-size: 0.9rem;
       color: rgba(255,255,255,0.7);
       line-height: 1.8;
     }
-
+ 
     .footer-brand small {
       display: block;
       font-size: 0.72rem;
@@ -799,7 +809,7 @@
       margin-top: 0.5rem;
       letter-spacing: 0.05em;
     }
-
+ 
     .footer-links {
       display: flex;
       flex-wrap: nowrap;
@@ -807,7 +817,7 @@
       list-style: none;
       align-items: center;
     }
-
+ 
     .footer-links a {
       font-size: 0.7rem;
       color: rgba(255,255,255,0.4);
@@ -816,9 +826,9 @@
       transition: color 0.2s;
       white-space: nowrap;
     }
-
+ 
     .footer-links a:hover { color: rgba(255,255,255,0.7); }
-
+ 
     .footer-copy {
       margin-top: 3rem;
       padding-top: 2rem;
@@ -827,7 +837,7 @@
       color: rgba(255,255,255,0.25);
       letter-spacing: 0.05em;
     }
-
+ 
     /* ── MOBILE ── */
     .hamburger {
       display: none;
@@ -836,7 +846,7 @@
       cursor: pointer;
       padding: 4px;
     }
-
+ 
     .hamburger span {
       display: block;
       width: 22px;
@@ -844,7 +854,7 @@
       background: var(--color-text);
       transition: all 0.25s;
     }
-
+ 
     /* ── ハンバーガー open 時のX変形 ── */
     .hamburger.open span:nth-child(1) {
       transform: translateY(6.5px) rotate(45deg);
@@ -855,7 +865,7 @@
     .hamburger.open span:nth-child(3) {
       transform: translateY(-6.5px) rotate(-45deg);
     }
-
+ 
     /* ── モバイルメニュー展開 ── */
     .nav-mobile-menu {
       display: none;
@@ -871,11 +881,11 @@
       flex-direction: column;
       gap: 0;
     }
-
+ 
     .nav-mobile-menu.open {
       display: flex;
     }
-
+ 
     .nav-mobile-menu a {
       font-size: 0.9rem;
       color: var(--color-text-muted);
@@ -885,55 +895,55 @@
       border-bottom: 1px solid var(--color-border);
       transition: color 0.2s;
     }
-
+ 
     .nav-mobile-menu a:last-child {
       border-bottom: none;
     }
-
+ 
     .nav-mobile-menu a:hover { color: var(--color-primary); }
-
+ 
     @media (max-width: 900px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
-
+ 
       .hero { grid-template-columns: 1fr; }
       .hero-text { padding: 4rem 2rem; }
       .hero-visual { min-height: 320px; }
-
+ 
       .forwho-header { grid-template-columns: 1fr; gap: 2rem; }
       .forwho-cards { grid-template-columns: 1fr; }
-
+ 
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-photo { aspect-ratio: 4/3; }
-
+ 
       .pricing-grid { grid-template-columns: 1fr; }
-
+ 
       .flow-steps { grid-template-columns: 1fr 1fr; }
       .flow-step:not(:last-child)::after { display: none; }
-
+ 
       .faq-grid { grid-template-columns: 1fr; }
       .faq-item:nth-child(odd) { border-right: none; }
       .faq-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--color-border); }
       .faq-item:last-child { border-bottom: none; }
-
+ 
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-
+ 
       .footer-inner { flex-direction: column; gap: 2rem; }
       .footer-links { flex-wrap: wrap; gap: 1rem; }
     }
-
+ 
     @media (max-width: 600px) {
       section { padding: 4rem 0; }
       .flow-steps { grid-template-columns: 1fr; }
     }
-
+ 
     /* ── ANIMATIONS ── */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-
+ 
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
@@ -941,7 +951,7 @@
   </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">日本橋教育カウンセリングオフィス</a>
@@ -956,7 +966,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
-
+ 
 <!-- モバイルメニュー -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMenu()">カウンセラー</a>
@@ -965,33 +975,35 @@
   <a href="#faq" onclick="closeMenu()">よくある質問</a>
   <a href="#contact" onclick="closeMenu()">お問い合わせ・相談する</a>
 </div>
-
+ 
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="hero-text">
-
+ 
     <img class="hero-text-bg" src="counciling-office.jpg" alt="カウンセリングオフィス">
     <div class="hero-text-overlay"></div>
-
+ 
     <p class="hero-eyebrow">Nihonbashi Education Counseling Office</p>
-    <h1 class="hero-title">
-      あなたの話を、<br>
-      ただ、聴く場所。<br>
-      <em>ここにあります。</em>
-    </h1>
-    <p class="hero-body">
-      教育の現場で長年を過ごし、多くの人の悩みに向き合ってきた公認心理師が、
-      あなたの言葉を丁寧に受け取ります。
-      正解を出す場所ではなく、一緒に考える場所です。
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">無料相談のご予約</a>
-      <a href="#about" class="btn-ghost">カウンセラーについて</a>
+    <div class="hero-text-card">
+      <h1 class="hero-title">
+        あなたの話を、<br>
+        ただ、聴く場所。<br>
+        <em>ここにあります。</em>
+      </h1>
+      <p class="hero-body">
+        教育の現場で長年を過ごし、多くの人の悩みに向き合ってきた公認心理師が、
+        あなたの言葉を丁寧に受け取ります。
+        正解を出す場所ではなく、一緒に考える場所です。
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">無料相談のご予約</a>
+        <a href="#about" class="btn-ghost">カウンセラーについて</a>
+      </div>
     </div>
   </div>
   <div class="hero-visual">
     <div class="hero-visual-bg"></div>
-
+ 
     <div class="hero-quote">
       <blockquote>
         「話すだけでいい」と<br>
@@ -1002,7 +1014,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FOR WHOM -->
 <section class="forwho" id="forwho">
   <div class="container">
@@ -1017,7 +1029,7 @@
         1人で考えるのではなく、誰かに相談してみませんか？
       </p>
     </div>
-
+ 
     <div class="forwho-cards">
       <div class="forwho-card fade-in">
         <div class="forwho-card-num">01</div>
@@ -1052,7 +1064,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <section id="about">
   <div class="container">
@@ -1060,7 +1072,7 @@
       <div class="about-photo">
         <img src="hokibara.jpg" alt="公認心理師 伯耆原浩行" style="width:100%; height:100%; object-fit:cover; object-position:center;">
       </div>
-
+ 
       <div class="about-content fade-in">
         <p class="section-label">Counselor</p>
         <h2 class="about-name">
@@ -1068,7 +1080,7 @@
         </h2>
         <p class="about-credential">公認心理師</p>
         <div class="about-divider"></div>
-
+ 
         <p class="about-text">
           東京都内の私立高校で長年にわたり生活指導を担当し、
           多くの生徒や保護者と向き合ってきました。
@@ -1085,7 +1097,7 @@
         <p class="about-text">
           あなたの言葉を、急がず、決めつけず、ただ聴くことを大切にしています。
         </p>
-
+ 
         <div class="about-tags">
           <span class="about-tag">公認心理師</span>
           <span class="about-tag">元高校校長</span>
@@ -1097,7 +1109,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="container">
@@ -1108,7 +1120,7 @@
         1回50分のカウンセリングです。初回は状況をゆっくりお聞きするための相談から始まります。
       </p>
     </div>
-
+ 
     <div class="pricing-grid">
       <div class="pricing-card fade-in">
         <p class="pricing-card-label">FIRST SESSION</p>
@@ -1121,7 +1133,7 @@
           緊張しなくて大丈夫です。まずはお話しください。
         </p>
       </div>
-
+ 
       <div class="pricing-card featured fade-in">
         <p class="pricing-card-label">MONTHLY · 2×</p>
         <h3 class="pricing-card-name">月2回プラン</h3>
@@ -1133,7 +1145,7 @@
           変化を確認しながら、無理のないペースで継続できます。
         </p>
       </div>
-
+ 
       <div class="pricing-card fade-in">
         <p class="pricing-card-label">MONTHLY · 4×</p>
         <h3 class="pricing-card-name">月4回プラン</h3>
@@ -1146,17 +1158,17 @@
         </p>
       </div>
     </div>
-
+ 
     <p class="pricing-note">料金は税込表示です。お支払いは現金またはお振込みにて承ります。</p>
   </div>
 </section>
-
+ 
 <!-- FLOW -->
 <section id="flow">
   <div class="container">
     <p class="section-label">Flow</p>
     <h2 class="section-title">ご利用の流れ</h2>
-
+ 
     <div class="flow-steps">
       <div class="flow-step fade-in">
         <p class="flow-num">01</p>
@@ -1189,13 +1201,13 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
     <p class="section-label">FAQ</p>
     <h2 class="section-title">よくあるご質問</h2>
-
+ 
     <div class="faq-grid">
       <div class="faq-item fade-in">
         <p class="faq-q">相談内容は秘密にしてもらえますか？</p>
@@ -1224,7 +1236,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
@@ -1237,21 +1249,21 @@
           迷っている段階でのご連絡も歓迎しています。
           2営業日以内にご返信いたします。
         </p>
-
+ 
         <div class="contact-detail">
           <p class="contact-detail-label">Tel</p>
           <p class="contact-detail-value">
             <a href="tel:0343629561">03-4362-9561</a>
           </p>
         </div>
-
+ 
         <div class="contact-detail">
           <p class="contact-detail-label">Email</p>
           <p class="contact-detail-value">
             <a href="mailto:info@education-counseling.jp">info@education-counseling.jp</a>
           </p>
         </div>
-
+ 
         <div class="contact-detail">
           <p class="contact-detail-label">Location</p>
           <p class="contact-detail-value" style="font-size:0.88rem;">
@@ -1260,7 +1272,7 @@
             メゾン日本橋 1006号
           </p>
         </div>
-
+ 
         <div class="contact-detail">
           <p class="contact-detail-label">Hours</p>
           <p class="contact-detail-value" style="font-size:0.88rem;">
@@ -1269,7 +1281,7 @@
           </p>
         </div>
       </div>
-
+ 
       <div class="fade-in">
         <form
           class="contact-form"
@@ -1309,7 +1321,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1332,7 +1344,7 @@
     <p class="footer-copy">© 2024 日本橋教育カウンセリングオフィス. All rights reserved.</p>
   </div>
 </footer>
-
+ 
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1341,22 +1353,22 @@
       }
     });
   }, { threshold: 0.1 });
-
+ 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
+ 
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-
+ 
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
   });
-
+ 
   function closeMenu() {
     hamburger.classList.remove('open');
     mobileMenu.classList.remove('open');
   }
 </script>
-
+ 
 </body>
 </html>
